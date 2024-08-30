@@ -1,0 +1,555 @@
+---
+title: "WFP Database"
+author: "Nanda Kumar Maharjan"
+date: "2024-06-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Basic Packages for R studio
+```{r warning=FALSE, message=FALSE}
+rm(list = ls())
+library(pacman)
+p_load(tidyverse, dplyr, readxl, flextable, lubridate, here)
+
+```
+
+
+
+#Necessary library to connect R to SQL database 
+
+```{r warning= FALSE, message=F}
+library(odbc) # Contains drivers to connect a database
+library(DBI)  # Contains function to interact with database
+library(RSQLite)
+library(dbplyr)
+library(dplyr)
+
+#portaldb <- dbConnect()
+```
+
+#Example to connect to SQL
+```{r}
+#con <- DBI::dbConnect(drv = odbc::odbc(),
+#                      Driver = "driver_name",
+#                      Server = "server_url",
+#                      Database = "database_name",
+#                      user = "user", #optional
+#                      password = "password") #optional
+```
+
+```{r}
+con <- DBI::dbConnect(drv = odbc::odbc(),
+                      Driver = "Amazon_Redshift",
+                      Server = "nepal-dashboard-db.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com",
+                      Database = "fsp_data",
+                      user = "admin", #optional
+                      password = "Q3aikjweEVYoox6yyZhi") #optional
+```
+
+#WFP Database from Python 
+# Download the CSV file
+
+```{r}
+csv_data <- read.csv("https://data.humdata.org/dataset/0e8b1b84-8e55-4aec-bc45-0c7d2c92d32e/resource/10bae3d7-82bf-4caf-a216-5fb4a8ff6e43/download/wfp_food_prices_npl.csv")
+
+data <- csv_data
+
+rm(csv_data)
+
+data %>% filter(date == "2023-05-15" | date == "2024-05-15" |date == "2024-04-15")
+```
+
+# Print the first few rows of the CSV data
+```{r}
+head(csv_data)
+```
+# REMOVE THE FIRST ROW, SINCE THERE IS UNNECESSARY INFORMATION
+
+```{r}
+csv_data <- csv_data[-1,]
+csv_data
+```
+# ADD ISO3CODE SINCE THERE IS NO COUNTRYCODE ITSELF FROM THE CSV FILE
+
+```{r}
+csv_data <- csv_data %>% mutate(ISO3Code = 'NPL')
+df <- csv_data
+```
+
+
+```{r}
+tables <- c('WFP_PRICE_DATA', 'WFP_PRICE_DATA_PROCESSED')
+
+truncate_existing_tables <- function(conn, tables) {
+  for (table in tables) {
+    dbExecute(conn, paste0("TRUNCATE TABLE ", table))
+  }
+}
+
+
+insert_dataframe_to_db <- function(conn, df, table_name) {
+  dbWriteTable(conn, table_name, df, append = TRUE, row.names = FALSE)
+}
+
+conn <- dbConnect(RSQLite::SQLite(), dbname = 'your_database.sqlite')
+
+truncate_existing_tables(conn, tables)
+
+insert_dataframe_to_db(conn, df, 'WFP_PRICE_DATA')
+dbDisconnect(conn)
+```
+
+## Print the number of rows
+```{r}
+cat("Number of rows:", nrow(csv_data), "\n")
+```
+# Print the data type of the 'price' column
+```{r}
+cat("Data type of 'price':", class(csv_data$price), "\n")
+```
+# Filter the dataframe
+
+```{r}
+csv_data <- csv_data %>% filter(price != 0.0 & priceflag == "actual")
+```
+# Print the number of rows after filtering
+
+```{r}
+cat("Number of rows after filtering:", nrow(df), "\n")
+
+nrow(csv_data)
+```
+#Calculating the annual percentage change for seasonality
+# Copy the dataframe
+```{r}
+percentage_change_df <- df
+```
+# Convert 'date' to datetime format if it's not already
+```{r}
+percentage_change_df$date <- as.Date(percentage_change_df$date)
+```
+
+# Extract the year from the 'date' column and create a new column called 'year'
+```{r}
+percentage_change_df <- percentage_change_df %>%
+  mutate(year = year(date))
+```
+# Create a column "month" to match with CPI data
+```{r}
+percentage_change_df <- percentage_change_df %>%
+  mutate(month = month(date))
+
+percentage_change_df %>% select(month)
+```
+# Convert 'price' to numeric value format if it's not already
+```{r}
+percentage_change_df <- percentage_change_df %>%
+  mutate(price = as.numeric(price))
+```
+
+# Group by year, commodity, and market to calculate the mean price
+
+```{r}
+annual_prices <- percentage_change_df %>%
+  group_by(year, commodity, market) %>%
+  summarise(annual_avg_price = round(mean(price, na.rm = TRUE),2)) %>% ungroup()
+
+annual_prices %>% flextable()
+```
+# View the resulting dataframe
+
+```{r}
+print(annual_prices)
+```
+# Merge the annual_prices dataframe back into the main percentage_change_df dataframe
+
+```{r}
+percentage_change_df <- percentage_change_df %>%
+  left_join(annual_prices, by = c("year", "commodity", "market"))
+
+percentage_change_df
+```
+# Calculate the percentage change between the actual price and the annual average price
+```{r}
+percentage_change_df <- percentage_change_df %>%
+  mutate(percentage_change = ((price - annual_avg_price)/annual_avg_price * 100))
+
+#To view percentage change
+percentage_change_df %>% select(percentage_change)
+```
+
+# Define the function to insert the dataframe into the database
+```{r}
+insert_dataframe_to_db <- function(conn, df, table_name) {
+  dbWriteTable(conn, table_name, df, append = TRUE, row.names = FALSE)
+}
+```
+
+# Example usage
+# Assuming you have a database connection already established
+```{r}
+conn <- dbConnect(RSQLite::SQLite(), dbname = 'your_database.sqlite')
+```
+# Insert the updated dataframe into the database
+
+```{r}
+insert_dataframe_to_db(conn, percentage_change_df, 'WFP_PRICE_DATA_PROCESSED')
+```
+
+# Close the connection
+```{r}
+dbDisconnect(conn)
+```
+
+#Calculating the real price, nominal index and real index for food prices tab
+
+# Create a connection to the database
+```{r}
+conn <- dbConnect(RSQLite::SQLite(), dbname = 'your_database.sqlite')
+```
+# Define the SQL query
+```{r}
+
+query <- "SELECT value, CPI_month, CPI_year FROM NEPAL_DASHBOARD_CPI"
+```
+
+# Execute the query and fetch the results
+
+```{r}
+result <- dbGetQuery(conn, query)
+```
+
+# Convert the result to a dataframe
+```{r}
+cpi_df <- read_csv(here("data/CPI.csv"))
+
+
+
+cpi_df <- as.data.frame(result)
+
+```
+
+# Print the column names of the dataframe
+```{r}
+print(colnames(cpi_df))
+```
+# Close the connection
+
+```{r}
+dbDisconnect(conn)
+```
+
+# Merge percentage_change_df with cpi_df on year and month
+
+```{r}
+percentage_change_CPI_df <- percentage_change_df %>%
+  left_join(cpi_df, by = c("year" = "CPI_year", "month" = "CPI_month"))
+```
+# Drop unnecessary columns (if any)
+
+```{r}
+percentage_change_CPI_df <- percentage_change_CPI_df %>%
+  select(-ends_with("_to_drop"))
+
+percentage_change_CPI_df
+```
+# Change the column name of 'value' to 'CPI'
+
+```{r}
+
+percentage_change_CPI_df <- percentage_change_CPI_df %>%
+  rename(value = CPI)
+
+```
+
+# Define the function to insert the dataframe into the database
+```{r}
+insert_dataframe_to_db <- function(conn, df, table_name) {
+  dbWriteTable(conn, table_name, df, append = TRUE, row.names = FALSE)
+}
+```
+
+# Example usage
+# Assuming you have a database connection already established
+
+```{r}
+
+conn <- dbConnect(RSQLite::SQLite(), dbname = 'your_database.sqlite')
+
+```
+
+
+# Insert the updated dataframe into the database
+
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_df, 'WFP_PRICE_DATA_PROCESSED')
+```
+
+# Close the connection
+```{r}
+dbDisconnect(conn)
+```
+
+# Filter to get the real prices for January, February, and March of 2020
+```{r}
+
+percentage_change_CPI_real_df = percentage_change_CPI_df
+
+jan_feb_mar_2020_real_prices <- percentage_change_CPI_real_df %>%
+  filter(year == 2020 & month %in% c(1, 2, 3))
+
+jan_feb_mar_2020_real_prices
+```
+
+
+# Filter to get missing real prices outside January, February, and March of 2020
+
+```{r}
+missing_real_prices <- percentage_change_CPI_real_df %>%
+  filter(!(year == 2020 & month %in% c(1, 2, 3)))
+
+missing_real_prices
+```
+
+# Further filter to get data points for the year 2020 and after
+```{r}
+missing_real_prices_2020_after <- missing_real_prices %>%
+  filter(year >= 2020)
+```
+
+# Sort by 'admin1', 'admin2', 'market', and 'commodity'
+```{r}
+missing_real_prices_2020_after_sort <- missing_real_prices_2020_after %>%
+  arrange(admin1, admin2, market, commodity)
+```
+
+# Reset the index (row names) in R
+```{r}
+missing_real_prices_2020_after_sort <- missing_real_prices_2020_after_sort %>%
+  mutate(row_number = row_number()) %>%
+  select(-row_number)
+```
+
+# View the result
+```{r}
+print(missing_real_prices_2020_after_sort)
+```
+
+# Assuming 'percentage_change_CPI_real_df' is already loaded
+
+# Get the earliest values for each series
+
+```{r}
+earliest_real_values <- missing_real_prices_2020_after_sort %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  slice(1) %>%
+  ungroup() %>%
+  rename(real_price_reference = real_price)
+```
+# Insert the resulting dataframe into the database
+
+```{r}
+conn <- dbConnect(RSQLite::SQLite(), dbname = 'your_database.sqlite')
+insert_dataframe_to_db(conn, earliest_real_values, 'WFP_PRICE_DATA_PROCESSED_MISSING_REAL_REFERENCE')
+```
+
+# Calculate the average 'real_price' for each group ('commodity' and 'market')
+
+```{r}
+avg_real_prices_grouped <- jan_feb_mar_2020_real_prices %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  summarise(real_price_reference = mean(real_price, na.rm = TRUE)) %>%
+  ungroup()
+```
+
+# Merge this 'real_reference_price' from 2020 Jan back into the main dataframe
+```{r}
+percentage_change_CPI_real_index_df <- percentage_change_CPI_real_df %>%
+  left_join(avg_real_prices_grouped, by = c('admin1', 'admin2', 'commodity', 'market'))
+```
+
+
+# Drop unnecessary columns (if any)
+```{r}
+percentage_change_CPI_real_index_df <- percentage_change_CPI_real_index_df %>%
+  select(-ends_with("_to_drop"))
+```
+
+# Insert the updated dataframe into the database
+
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_real_index_df, 'WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE1')
+
+```
+
+# Merge the earliest real values back into the main dataframe
+
+```{r}
+percentage_change_CPI_real_index_early_df <- percentage_change_CPI_real_index_df %>%
+  left_join(
+    earliest_real_values %>% select(admin1, admin2, commodity, market, real_price_reference),
+    by = c('admin1', 'admin2', 'commodity', 'market'),
+    suffix = c("", "_to_drop")
+  )
+```
+
+# Drop unnecessary columns (if any)
+```{r}
+percentage_change_CPI_real_index_early_df <- percentage_change_CPI_real_index_early_df %>%
+  select(-ends_with("_to_drop"))
+```
+
+
+# Insert the final dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_real_index_early_df, 'WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE_EARLY')
+```
+
+# Close the connection
+
+```{r}
+dbDisconnect(conn)
+```
+
+# Assuming 'percentage_change_CPI_real_index_early_df' and 'avg_real_prices_grouped' are already loaded
+
+# Check if 'real_price_reference' is NA in percentage_change_CPI_real_index_early_df
+
+```{r}
+mask <- is.na(percentage_change_CPI_real_index_early_df$real_price_reference)
+```
+
+
+# Fill missing values in 'real_price_reference' from 'real_price_reference_to_drop'
+```{r}
+percentage_change_CPI_real_index_early_df$real_price_reference[mask] <- percentage_change_CPI_real_index_early_df$real_price_reference_to_drop[mask]
+```
+
+
+# Drop unnecessary columns (if any)
+```{r}
+percentage_change_CPI_real_index_early_df <- percentage_change_CPI_real_index_early_df %>%
+  select(-ends_with("_to_drop"))
+```
+
+
+# Insert the updated dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_real_index_early_df, 'WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE2')
+```
+
+# Assuming 'percentage_change_CPI_real_nominal_index_df', 'jan_feb_mar_2020_nominal_prices', 'missing_nominal_prices', 'missing_nominal_prices_2020_after_sort', 'earliest_nominal_values', 'avg_nominal_prices_grouped' are already loaded
+
+# Get the earliest values for each series
+
+```{r}
+
+earliest_nominal_values <- missing_nominal_prices_2020_after_sort %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  slice(1) %>%
+  ungroup() %>%
+  rename(nominal_price_reference = price)
+```
+
+
+# Insert the resulting dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, earliest_nominal_values, 'WFP_PRICE_DATA_PROCESSED_MISSING_NOMINAL_REFERENCE')
+```
+
+
+# Calculate the average 'price' for January, February, and March of 2020
+```{r}
+avg_nominal_prices_grouped <- jan_feb_mar_2020_nominal_prices %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  summarise(nominal_price_reference = mean(price, na.rm = TRUE)) %>%
+  ungroup()
+```
+
+
+# Merge this 'nominal_price_reference' from 2020 Jan back into the main dataframe
+```{r}
+percentage_change_CPI_real_nominal_index_df <- percentage_change_CPI_real_nominal_df %>%
+  left_join(avg_nominal_prices_grouped, by = c('admin1', 'admin2', 'commodity', 'market'))
+```
+
+
+# Drop unnecessary columns (if any)
+```{r}
+percentage_change_CPI_real_nominal_index_df <- percentage_change_CPI_real_nominal_index_df %>%
+  select(-ends_with("_to_drop"))
+```
+
+
+# Insert the updated dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_real_nominal_index_df, 'WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE1')
+```
+
+
+# Merge the earliest nominal values back into the main dataframe
+```{r}
+percentage_change_CPI_nominal_index_early_df <- percentage_change_CPI_real_nominal_index_df %>%
+  left_join(
+    earliest_nominal_values %>% select(admin1, admin2, commodity, market, nominal_price_reference),
+    by = c('admin1', 'admin2', 'commodity', 'market'),
+    suffix = c("", "_to_drop")
+  )
+```
+
+
+# Check if 'nominal_price_reference' is NA in percentage_change_CPI_nominal_index_early_df
+```{r}
+mask <- is.na(percentage_change_CPI_nominal_index_early_df$nominal_price_reference)
+```
+
+
+# Fill missing values in 'nominal_price_reference' from 'nominal_price_reference_to_drop'
+```{r}
+percentage_change_CPI_nominal_index_early_df$nominal_price_reference[mask] <- percentage_change_CPI_nominal_index_early_df$nominal_price_reference_to_drop[mask]
+```
+
+
+# Drop unnecessary columns (if any)
+```{r}
+percentage_change_CPI_nominal_index_early_df <- percentage_change_CPI_nominal_index_early_df %>%
+  select(-ends_with("_to_drop"))
+```
+
+
+# Insert the updated dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_nominal_index_early_df, 'WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE2')
+```
+
+
+# Calculate the nominal_price_index
+```{r}
+percentage_change_CPI_nominal_index_early_df$nominal_price_index <- (
+  (percentage_change_CPI_nominal_index_early_df$price / percentage_change_CPI_nominal_index_early_df$nominal_price_reference) * 100
+)
+```
+
+
+# Calculate the real_price_index
+```{r}
+percentage_change_CPI_nominal_index_early_df$real_price_index <- (
+  (percentage_change_CPI_nominal_index_early_df$real_price / percentage_change_CPI_nominal_index_early_df$real_price_reference) * 100
+)
+```
+
+
+# Insert the updated dataframe into the database
+```{r}
+insert_dataframe_to_db(conn, percentage_change_CPI_nominal_index_early_df, 'WFP_PRICE_DATA_NEPAL_PROCESSED')
+```
+
+
+
+
+
+

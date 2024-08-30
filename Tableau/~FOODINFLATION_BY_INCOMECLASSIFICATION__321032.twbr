@@ -1,0 +1,1414 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20233.23.1017.0948                               -->
+<workbook original-version='18.1' source-build='2023.3.0 (20233.23.1017.0948)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <BasicButtonObject />
+    <BasicButtonObjectTextSupport />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location id='FOODINFLATION_BY_INCOMECLASSIFICATION' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' inline='true' name='federated.1c09v6v066rl3p19c2ycp15iktog' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='fsp-raw-production.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com' name='mysql.1nbfy2z03omtsj17cb7uf00loeso'>
+            <connection class='mysql' dbname='fsp_data' odbc-native-protocol='' one-time-sql='' port='3306' server='fsp-raw-production.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com' source-charset='' username='soonho' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='mysql.1nbfy2z03omtsj17cb7uf00loeso' name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT' table='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]' type='table' />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='mysql.1nbfy2z03omtsj17cb7uf00loeso' name='FOODINFLATIONBYINCOMECLASSIFICATION' table='[FOODINFLATIONBYINCOMECLASSIFICATION]' type='table' />
+          <relation connection='mysql.1nbfy2z03omtsj17cb7uf00loeso' name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT' table='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]' type='table' />
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[CONS (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[CONS]' />
+          <map key='[CONS]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[CONS]' />
+          <map key='[date (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[date]' />
+          <map key='[date]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[date]' />
+          <map key='[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[foodInflation]' />
+          <map key='[foodInflation]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[foodInflation]' />
+          <map key='[id (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[id]' />
+          <map key='[id]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[id]' />
+          <map key='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[incomeClassification]' />
+          <map key='[incomeClassification]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[incomeClassification]' />
+          <map key='[numberOfCountries (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[numberOfCountries]' />
+          <map key='[numberOfCountries]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[numberOfCountries]' />
+          <map key='[sumWeights (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT].[sumWeights]' />
+          <map key='[sumWeights]' value='[FOODINFLATIONBYINCOMECLASSIFICATION].[sumWeights]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>id</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[id]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>incomeClassification</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[incomeClassification]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>incomeClassification</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CONS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[CONS]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>CONS</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sumWeights</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[sumWeights]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>sumWeights</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>foodInflation</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[foodInflation]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>foodInflation</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>numberOfCountries</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[numberOfCountries]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>numberOfCountries</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_DATE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_DATE&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>id</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[id (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>id</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>incomeClassification</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>incomeClassification</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CONS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[CONS (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>CONS</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sumWeights</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[sumWeights (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>sumWeights</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>foodInflation</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>foodInflation</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation charset='280' flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>numberOfCountries</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[numberOfCountries (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>numberOfCountries</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[date (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+            <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_DATE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_DATE&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Cons (Foodinflationbyincomeclassificationlatestpoint)' datatype='string' name='[CONS (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='dimension' type='nominal' />
+      <column caption='Cons' datatype='string' name='[CONS]' role='dimension' type='nominal' />
+      <_.fcp.ObjectModelTableType.true...column caption='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT' datatype='table' name='[__tableau_internal_object_id__].[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='FOODINFLATIONBYINCOMECLASSIFICATION' datatype='table' name='[__tableau_internal_object_id__].[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]' role='measure' type='quantitative' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column datatype='real' datatype-customized='true' name='[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='measure' type='quantitative' />
+      <column caption='Food Inflation' datatype='real' datatype-customized='true' name='[foodInflation]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[id (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='dimension' type='ordinal' />
+      <column caption='Id' datatype='integer' name='[id]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='dimension' type='nominal' />
+      <column caption='Income Classification' datatype='string' name='[incomeClassification]' role='dimension' type='nominal' />
+      <column caption='Number Of Countries' datatype='integer' name='[numberOfCountries]' role='measure' type='quantitative' />
+      <column caption='Sum Weights' datatype='real' name='[sumWeights]' role='measure' type='quantitative' />
+      <column-instance column='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' derivation='None' name='[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' pivot='key' type='nominal' />
+      <column-instance column='[incomeClassification]' derivation='None' name='[none:incomeClassification:nk]' pivot='key' type='nominal' />
+      <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:ok]' pivot='key' type='ordinal' />
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/SOONHOKIM/CGIAR/IFPRI-MTID-FSP - 2.0 Price Monitoring Tool/Revamping the FPM/TABLEAU/FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data).hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='03/22/2024 01:03:36 AM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48' table='[Extract].[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+            <relation name='FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3' table='[Extract].[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]' type='table' />
+            <relation name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48' table='[Extract].[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]' type='table' />
+          </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+          <cols>
+            <map key='[CONS (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[CONS]' />
+            <map key='[CONS]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[CONS]' />
+            <map key='[date (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[date]' />
+            <map key='[date]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[date]' />
+            <map key='[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[foodInflation]' />
+            <map key='[foodInflation]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[foodInflation]' />
+            <map key='[id (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[id]' />
+            <map key='[id]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[id]' />
+            <map key='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[incomeClassification]' />
+            <map key='[incomeClassification]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[incomeClassification]' />
+            <map key='[numberOfCountries (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[numberOfCountries]' />
+            <map key='[numberOfCountries]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[numberOfCountries]' />
+            <map key='[sumWeights (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' value='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48].[sumWeights]' />
+            <map key='[sumWeights]' value='[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3].[sumWeights]' />
+          </cols>
+          <refresh>
+            <refresh-event add-from-file-path='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' increment-value='%null%' refresh-type='create' rows-inserted='76' timestamp-start='2024-03-22 01:03:35.972' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[id]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>incomeClassification</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[incomeClassification]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>incomeClassification</remote-alias>
+              <ordinal>1</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>CONS</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[CONS]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>CONS</remote-alias>
+              <ordinal>2</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>31</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>sumWeights</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[sumWeights]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>sumWeights</remote-alias>
+              <ordinal>3</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>foodInflation</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[foodInflation]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>foodInflation</remote-alias>
+              <ordinal>4</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>numberOfCountries</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[numberOfCountries]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>numberOfCountries</remote-alias>
+              <ordinal>5</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>22</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[date]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>6</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATION</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>15</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[id (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>id</remote-alias>
+              <ordinal>7</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>incomeClassification</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>incomeClassification</remote-alias>
+              <ordinal>8</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>CONS</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[CONS (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>CONS</remote-alias>
+              <ordinal>9</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RUS_S2' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>sumWeights</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[sumWeights (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>sumWeights</remote-alias>
+              <ordinal>10</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>foodInflation</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>foodInflation</remote-alias>
+              <ordinal>11</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>numberOfCountries</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[numberOfCountries (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>numberOfCountries</remote-alias>
+              <ordinal>12</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[date (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]</local-name>
+              <parent-name>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>13</ordinal>
+              <family>FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[tmn:date:ok]' type='palette'>
+            <map to='#499894'>
+              <bucket>#2023-09-01 00:00:00#</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>#2023-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>#2023-05-01 00:00:00#</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>#2024-01-01 00:00:00#</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>#2023-10-01 00:00:00#</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>#2023-06-01 00:00:00#</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>#2023-02-01 00:00:00#</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>#2023-07-01 00:00:00#</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>#2024-02-01 00:00:00#</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>#2024-03-01 00:00:00#</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>#2023-11-01 00:00:00#</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>#2023-08-01 00:00:00#</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>#2023-03-01 00:00:00#</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>#2023-12-01 00:00:00#</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>#2023-04-01 00:00:00#</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' type='palette'>
+            <map to='#499894'>
+              <bucket>&quot;low income&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;high income&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;lower middle income&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;upper middle income&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;World&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:incomeClassification:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;low income&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;lower middle income&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;upper middle income&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;high income&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;World&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT' id='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48'>
+            <properties context=''>
+              <relation connection='mysql.1nbfy2z03omtsj17cb7uf00loeso' name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT' table='[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT]' type='table' />
+            </properties>
+            <properties context='extract'>
+              <relation name='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48' table='[Extract].[FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48]' type='table' />
+            </properties>
+          </object>
+          <object caption='FOODINFLATIONBYINCOMECLASSIFICATION' id='FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3'>
+            <properties context=''>
+              <relation connection='mysql.1nbfy2z03omtsj17cb7uf00loeso' name='FOODINFLATIONBYINCOMECLASSIFICATION' table='[FOODINFLATIONBYINCOMECLASSIFICATION]' type='table' />
+            </properties>
+            <properties context='extract'>
+              <relation name='FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3' table='[Extract].[FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[date]' />
+              <expression op='[date (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' />
+            </expression>
+            <first-end-point object-id='FOODINFLATIONBYINCOMECLASSIFICATION_7229F744220847E0910890CB18BE16A3' />
+            <second-end-point object-id='FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT_07D57E4E2E2A4D7BA426C48B0C02BC48' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Historical data'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' name='federated.1c09v6v066rl3p19c2ycp15iktog' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1c09v6v066rl3p19c2ycp15iktog'>
+            <column-instance column='[foodInflation]' derivation='Avg' name='[avg:foodInflation:qk]' pivot='key' type='quantitative' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Food Inflation' datatype='real' datatype-customized='true' name='[foodInflation]' role='measure' type='quantitative' />
+            <column caption='Income Classification' datatype='string' name='[incomeClassification]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[incomeClassification]' derivation='None' name='[none:incomeClassification:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[my:date:ok]' member='202301' />
+              <groupfilter function='member' level='[my:date:ok]' member='202310' />
+              <groupfilter function='member' level='[my:date:ok]' member='202401' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;low income&quot;</bucket>
+              <bucket>&quot;lower middle income&quot;</bucket>
+              <bucket>&quot;upper middle income&quot;</bucket>
+              <bucket>&quot;high income&quot;</bucket>
+              <bucket>&quot;World&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation:qk]' scope='rows' value='Food Inflation' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' value='360' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' value='Month/year'>
+              <formatted-text>
+                <run>Month/year</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation:qk]</rows>
+        <cols>([federated.1c09v6v066rl3p19c2ycp15iktog].[tmn:date:ok] / [federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk])</cols>
+      </table>
+      <simple-id uuid='{E44E93D9-4DE7-49E4-A19A-53E7BF1F1F82}' />
+    </worksheet>
+    <worksheet name='Historical data (2)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1'>Domestic (consumer) food price inflation</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' name='federated.1c09v6v066rl3p19c2ycp15iktog' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1c09v6v066rl3p19c2ycp15iktog'>
+            <column-instance column='[foodInflation]' derivation='Avg' name='[avg:foodInflation:qk]' pivot='key' type='quantitative' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Food Inflation' datatype='real' datatype-customized='true' name='[foodInflation]' role='measure' type='quantitative' />
+            <column caption='Income Classification' datatype='string' name='[incomeClassification]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[incomeClassification]' derivation='None' name='[none:incomeClassification:nk]' pivot='key' type='nominal' />
+            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]'>
+            <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[my:date:ok]' member='202301' />
+              <groupfilter function='member' level='[my:date:ok]' member='202307' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;low income&quot;</bucket>
+              <bucket>&quot;lower middle income&quot;</bucket>
+              <bucket>&quot;upper middle income&quot;</bucket>
+              <bucket>&quot;high income&quot;</bucket>
+              <bucket>&quot;World&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation:qk]' scope='rows' value='Food Inflation' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' value='360' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' value='Month/year'>
+              <formatted-text>
+                <run>Month/year</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation:qk]</rows>
+        <cols>([federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk] / [federated.1c09v6v066rl3p19c2ycp15iktog].[tmn:date:ok])</cols>
+      </table>
+      <simple-id uuid='{B47F950F-9FAE-4A13-83FA-C7D08385FFEC}' />
+    </worksheet>
+    <worksheet name='latest point'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' name='federated.1c09v6v066rl3p19c2ycp15iktog' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1c09v6v066rl3p19c2ycp15iktog'>
+            <column-instance column='[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' derivation='Avg' name='[avg:foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):qk]' pivot='key' type='quantitative' />
+            <column datatype='real' datatype-customized='true' name='[foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='measure' type='quantitative' />
+            <column datatype='string' name='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' role='dimension' type='nominal' />
+            <column-instance column='[incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT)]' derivation='None' name='[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;high income&quot;</bucket>
+              <bucket>&quot;upper middle income&quot;</bucket>
+              <bucket>&quot;lower middle income&quot;</bucket>
+              <bucket>&quot;low income&quot;</bucket>
+              <bucket>&quot;World&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):qk]' scope='rows' value='Food Inflation ' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' value='360' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' value='Income classification'>
+              <formatted-text>
+                <run>Income classification</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1c09v6v066rl3p19c2ycp15iktog].[avg:foodInflation (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):qk]</rows>
+        <cols>[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]</cols>
+      </table>
+      <simple-id uuid='{20C6AB6D-157E-418E-9140-9C52E31FBFEB}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='98400' x='800' y='1000'>
+              <zone h='73875' id='10' name='latest point' w='98400' x='800' y='9750'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='8750' id='15' type-v2='dashboard-object' w='49200' x='800' y='1000'>
+                <button action='tabdoc:goto-sheet window-id=&quot;{3B87A346-389A-4D24-8601-7C0B073362BA}&quot;' button-type='text'>
+                  <button-visual-state>
+                    <caption>Latest points</caption>
+                    <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                    <format attr='background-color' value='#333333' />
+                  </button-visual-state>
+                </button>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='8750' id='16' type-v2='dashboard-object' w='49200' x='50000' y='1000'>
+                <button action='tabdoc:goto-sheet window-id=&quot;{048C61BE-AE71-42B8-9F92-93204DA701AE}&quot;' button-type='text'>
+                  <button-visual-state>
+                    <caption>Historical data</caption>
+                    <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                    <format attr='background-color' value='#898989' />
+                  </button-visual-state>
+                </button>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='15375' id='11' name='latest point' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' type-v2='color' w='98400' x='800' y='83625'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='26' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='25' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone h='8750' id='15' type-v2='dashboard-object' w='49200' x='800' y='1000'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{3B87A346-389A-4D24-8601-7C0B073362BA}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Latest points</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#333333' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='8750' id='16' type-v2='dashboard-object' w='49200' x='50000' y='1000'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{048C61BE-AE71-42B8-9F92-93204DA701AE}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Historical data</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#898989' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='73875' id='10' is-fixed='true' name='latest point' w='98400' x='800' y='9750'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='15375' id='11' name='latest point' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' type-v2='color' w='98400' x='800' y='83625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{D6ED5F91-A55E-486D-9F25-B3C38D92AC29}' />
+    </dashboard>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 2'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' name='federated.1c09v6v066rl3p19c2ycp15iktog' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1c09v6v066rl3p19c2ycp15iktog'>
+        <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+        <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='19' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='98400' x='800' y='1000'>
+              <zone h='9125' id='15' type-v2='dashboard-object' w='49200' x='800' y='1000'>
+                <button action='tabdoc:goto-sheet window-id=&quot;{3B87A346-389A-4D24-8601-7C0B073362BA}&quot;' button-type='text'>
+                  <button-visual-state>
+                    <caption>Latest points</caption>
+                    <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                    <format attr='background-color' value='#898989' />
+                  </button-visual-state>
+                </button>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='9125' id='16' type-v2='dashboard-object' w='49200' x='50000' y='1000'>
+                <button action='tabdoc:goto-sheet window-id=&quot;{048C61BE-AE71-42B8-9F92-93204DA701AE}&quot;' button-type='text'>
+                  <button-visual-state>
+                    <caption>Historical data</caption>
+                    <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                    <format attr='background-color' value='#000000' />
+                  </button-visual-state>
+                </button>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='64250' id='17' name='Historical data' show-title='false' w='98400' x='800' y='19375'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='9250' id='20' mode='checkdropdown' name='Historical data' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type-v2='filter' w='98400' x='800' y='10125'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='15375' id='21' name='Historical data' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type-v2='color' w='98400' x='800' y='83625'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='31' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='30' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone h='9125' id='15' type-v2='dashboard-object' w='49200' x='800' y='1000'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{3B87A346-389A-4D24-8601-7C0B073362BA}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Latest points</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#898989' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='9125' id='16' type-v2='dashboard-object' w='49200' x='50000' y='1000'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{048C61BE-AE71-42B8-9F92-93204DA701AE}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Historical data</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#000000' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='9250' id='20' mode='checkdropdown' name='Historical data' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type-v2='filter' w='98400' x='800' y='10125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='64250' id='17' is-fixed='true' name='Historical data' show-title='false' w='98400' x='800' y='19375'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='15375' id='21' name='Historical data' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type-v2='color' w='98400' x='800' y='83625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{2FF1491A-EA54-4AC0-BE91-3A167ABE1E55}' />
+    </dashboard>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 3'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='FOODINFLATIONBYINCOMECLASSIFICATION+ (fsp_data)' name='federated.1c09v6v066rl3p19c2ycp15iktog' />
+      </datasources>
+      <datasource-dependencies datasource='federated.1c09v6v066rl3p19c2ycp15iktog'>
+        <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+        <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='82400' x='800' y='1000'>
+              <zone h='81250' id='3' name='Historical data (2)' w='82400' x='800' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='16750' id='9' name='Historical data (2)' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type-v2='color' w='82400' x='800' y='82250'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='1000'>
+              <zone h='8750' id='8' mode='checkdropdown' name='Historical data (2)' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type-v2='filter' w='16000' x='83200' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='11' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='10' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone h='6500' id='8' mode='checkdropdown' name='Historical data (2)' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type-v2='filter' w='16000' x='83200' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='81250' id='3' is-fixed='true' name='Historical data (2)' w='82400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='16750' id='9' name='Historical data (2)' pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type-v2='color' w='82400' x='800' y='82250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{F8F88C43-49FA-4620-B2E6-E2AEE5257CE9}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='44'>
+    <window class='worksheet' name='Historical data'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='checkdropdown' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type='filter' />
+            <card pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{88D225E5-A5F6-4D92-A643-896E25B03C85}' />
+    </window>
+    <window class='worksheet' name='Historical data (2)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='48'>
+            <card type='columns' />
+          </strip>
+          <strip size='48'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='checkdropdown' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[my:date:ok]' type='filter' />
+            <card pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{B58527A9-6F94-461E-98AF-4F0B5AD49463}' />
+    </window>
+    <window class='worksheet' name='latest point'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1c09v6v066rl3p19c2ycp15iktog].[none:incomeClassification (FOODINFLATIONBYINCOMECLASSIFICATIONLATESTPOINT):nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{1B388506-5BFA-447D-B507-237DE43D7FFB}' />
+    </window>
+    <window class='dashboard' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='latest point'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='16' />
+      <simple-id uuid='{3B87A346-389A-4D24-8601-7C0B073362BA}' />
+    </window>
+    <window class='dashboard' name='Dashboard 2'>
+      <viewpoints>
+        <viewpoint name='Historical data'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{048C61BE-AE71-42B8-9F92-93204DA701AE}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Dashboard 3'>
+      <viewpoints>
+        <viewpoint name='Historical data (2)'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='8' />
+      <simple-id uuid='{ECF197BB-D4FA-4A8B-ABBB-984C89ED7D17}' />
+    </window>
+  </windows>
+</workbook>

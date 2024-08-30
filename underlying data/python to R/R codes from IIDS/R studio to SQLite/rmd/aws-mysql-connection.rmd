@@ -1,0 +1,89 @@
+---
+title: "AWS RDS MySQL Connection and Query"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This R Markdown document demonstrates how to connect to an AWS RDS MySQL database using R, and perform basic database operations.
+
+## Loading Required Packages
+
+First, we'll load the necessary packages. If they're not installed, we'll install them.
+
+```{r load_packages}
+if (!requireNamespace("DBI", quietly = TRUE)) install.packages("DBI")
+if (!requireNamespace("RMySQL", quietly = TRUE)) install.packages("RMySQL")
+
+library(DBI)
+library(RMySQL)
+```
+
+## Setting Up Connection Parameters
+
+We'll set up our connection parameters. For security, we're using environment variables for sensitive information.
+
+```{r setup_params}
+db_host <- "nepal-dashboard-db.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com"
+db_name <- "fsp_data"
+db_user <- "admin"
+db_password <- Sys.getenv("DB_PASSWORD")  # Make sure to set this environment variable
+```
+
+## Connecting to the Database
+
+Now, let's create a function to connect to our database.
+
+```{r connect_function}
+connect_to_db <- function() {
+  dbConnect(MySQL(),
+            host = db_host,
+            dbname = db_name,
+            user = db_user,
+            password = db_password)
+}
+```
+
+## Database Operations
+
+Here, we'll perform some basic database operations.
+
+```{r db_operations}
+tryCatch({
+  # Establish connection
+  con <- connect_to_db()
+  cat("Connected to the database successfully.\n")
+  
+  # List all tables
+  tables <- dbListTables(con)
+  cat("Tables in the database:\n")
+  print(tables)
+  
+  # Example query - modify as needed
+  query <- "SELECT * FROM your_table_name LIMIT 5"
+  result <- dbGetQuery(con, query)
+  cat("\nSample data from your_table_name:\n")
+  print(result)
+  
+  # You can add more database operations here
+  
+}, error = function(e) {
+  cat("An error occurred:\n", conditionMessage(e), "\n")
+}, finally = {
+  # Close the connection if it's open
+  if (exists("con") && dbIsValid(con)) {
+    dbDisconnect(con)
+    cat("Database connection closed.\n")
+  }
+})
+```
+
+## Conclusion
+
+This document demonstrated how to connect to an AWS RDS MySQL database, list tables, and run a basic query. You can expand on this to perform more complex database operations as needed.
+
+Remember to keep your database credentials secure and never share them publicly. It's a good practice to use environment variables for sensitive information.

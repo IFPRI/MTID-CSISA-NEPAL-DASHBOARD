@@ -1,0 +1,410 @@
+
+---
+title: "FSP Nepal Dashboard Data Processing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r install-packages}
+# Install necessary packages
+if (!require("DBI")) install.packages("DBI", repos='http://cran.us.r-project.org')
+if (!require("RMySQL")) install.packages("RMySQL", repos='http://cran.us.r-project.org')
+if (!require("dplyr")) install.packages("dplyr", repos='http://cran.us.r-project.org')
+if (!require("hdxr")) install.packages("hdxr", repos='http://cran.us.r-project.org')
+```
+
+```{r load-libraries}
+library(DBI)
+library(RMySQL)
+library(dplyr)
+library(rhdx)
+set_rhdx_config(hdx_site = "prod")
+```
+
+```{r database-connection}
+# Replace these values with your actual database information
+config <- list(
+  user = 'admin',
+  password = 'Q3aikjweEVYoox6yyZhi',
+  host = 'nepal-dashboard-db.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com',
+  database = 'fsp_data'
+)
+
+# Create a database connection
+con <- dbConnect(MySQL(),
+                 user = config$user,
+                 password = config$password,
+                 host = config$host,
+                 dbname = config$database)
+```
+
+```{r truncate-tables}
+# Function to truncate existing tables
+truncate_existing_tables <- function(con, tables) {
+  for (table in tables) {
+    dbSendQuery(con, paste("TRUNCATE TABLE", table))
+    print(paste("Table", table, "truncated successfully."))
+  }
+}
+
+tables <- c('WFP_PRICE_DATA', 'WFP_PRICE_DATA_PROCESSED')
+truncate_existing_tables(con, tables)
+```
+
+```{r fetch-hdx-data}
+# Get the WFP data from HDX
+# Get the WFP data from HDX
+
+
+pull_dataset("wfp-food-prices-for-nepal") %>%
+  get_resource(1) %>%
+  read_resource() -> csv_data
+
+#hdx_config <- list(site = "prod", user_agent = "Food Security Portal project", hdx_read_only = TRUE)
+#config <- Configuration$new(hdx_config)
+
+#dataset <- Dataset$new("wfp-food-prices-for-nepal")
+#resources <- dataset$get_resources()
+#csv_resource <- resources %>% filter(format == "CSV") %>% slice(1)
+#download_url <- csv_resource$download_url
+
+# Download the CSV file
+#csv_data <- read.csv(download_url)
+
+# Remove the first row, since there is unnecessary information
+csv_data <- csv_data[-1,]
+
+# Add ISO3Code since there is no country code itself from the CSV file
+csv_data$ISO3Code <- 'NPL'
+
+# Convert to data frame
+df <- as.data.frame(csv_data)
+```
+
+```{r insert-dataframe-to-db}
+# Function to insert DataFrame to DB
+insert_dataframe_to_db <- function(con, df, table_name) {
+  dbWriteTable(con, table_name, df, overwrite = TRUE, row.names = FALSE)
+  print(paste("Data successfully inserted into", table_name))
+}
+
+insert_dataframe_to_db(con, df, 'WFP_PRICE_DATA')
+```
+
+```{r filter-data}
+# Deleting data points where the price is 0
+df <- df %>% filter(price != 0 & priceflag == "actual")
+print(paste("Number of rows:", nrow(df)))
+```
+
+```{r close-connection}
+
+
+# Print number of rows
+print(paste("Number of rows:", nrow(df)))
+
+# Print data type of 'price' column
+print(class(df$price))
+
+# Filter the dataframe
+df <- df[df$price != 0.0 & df$priceflag == "actual", ]
+
+# Print number of rows after filtering
+print(paste("Number of rows:", nrow(df)))
+
+
+```
+Calculating the annual percentage change for seasonality¶
+```{r}
+# Create a new dataframe (In R, we typically just work with the original dataframe)
+percentage_change_df <- df
+
+# Convert 'date' to Date format if it's not already
+percentage_change_df$date <- as.Date(percentage_change_df$date)
+
+# Extract the year and month from the 'date' column
+percentage_change_df$year <- year(percentage_change_df$date)
+percentage_change_df$month <- month(percentage_change_df$date)
+
+# Convert 'price' to numeric format if it's not already
+percentage_change_df$price <- as.numeric(percentage_change_df$price)
+
+# Group by year, commodity, and market to calculate the mean price
+annual_prices <- percentage_change_df %>%
+  group_by(year, commodity, market) %>%
+  summarise(annual_avg_price = mean(price, na.rm = TRUE)) %>%
+  ungroup()
+
+# Merge the annual_prices dataframe back into the main dataframe
+percentage_change_df <- left_join(percentage_change_df, annual_prices, 
+                                  by = c("year", "commodity", "market"))
+
+# Calculate the percentage change
+percentage_change_df$percentage_change <- 
+  ((percentage_change_df$price - percentage_change_df$annual_avg_price) / 
+     percentage_change_df$annual_avg_price) * 100
+
+
+
+# Use the function to insert data
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_df, 'WFP_PRICE_DATA_PROCESSED')
+}, error = function(e) {
+  message("Error occurred: ", e$message)
+})
+
+
+
+
+# Execute the query and fetch the results into a data frame
+if (!is.null(con)) {
+  tryCatch({
+    # Check if the connection is valid
+    if (!dbIsValid(con)) {
+      message("Connection is not valid. Attempting to reconnect...")
+      dbDisconnect(con)
+      con <- create_connection()
+    }
+    
+    if (!is.null(con) && dbIsValid(con)) {
+      # Query the database
+      query <- "SELECT value, CPI_month, CPI_year FROM NEPAL_DASHBOARD_CPI"
+      print(query)
+      
+      # Execute the query and fetch the results into a data frame
+      cpi_df <- dbGetQuery(con, query)
+      
+      # Print the column names of the data frame
+      print(names(cpi_df))
+    } else {
+      message("Unable to establish a valid database connection.")
+    }
+  }, error = function(e) {
+    message("Error occurred: ", e$message)
+  }, finally = {
+    # Always try to close the connection, even if an error occurred
+    if (!is.null(con) && dbIsValid(con)) {
+     # dbDisconnect(con)
+    }
+  })
+} else {
+  message("Failed to establish initial database connection.")
+}
+
+# Print the column names of the data frame
+print(names(cpi_df))
+
+# Merge the dataframes
+percentage_change_CPI_df <- percentage_change_df %>%
+  left_join(cpi_df, by = c("year" = "CPI_year", "month" = "CPI_month"), suffix = c("", "_to_drop"))
+
+# Remove columns ending with '_to_drop'
+columns_to_keep <- names(percentage_change_CPI_df)[!endsWith(names(percentage_change_CPI_df), "_to_drop")]
+percentage_change_CPI_df <- percentage_change_CPI_df %>%
+  select(all_of(columns_to_keep))
+
+# Change the column name of 'value' to 'CPI'
+percentage_change_CPI_df <- percentage_change_CPI_df %>%
+  rename(CPI = value)
+
+# Try-catch block for inserting the dataframe into the database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_df, 'WFP_PRICE_DATA_PROCESSED')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+
+```
+```{r}
+# Create a new dataframe
+percentage_change_CPI_real_df <- percentage_change_CPI_df
+
+# Check if CPI column is numeric and calculate real_price if it is
+if (is.numeric(percentage_change_CPI_real_df$CPI)) {
+  percentage_change_CPI_real_df <- percentage_change_CPI_real_df %>%
+    mutate(real_price = (price / CPI) * 100)
+}
+
+# Insert the dataframe into the database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_real_df, 'WFP_PRICE_DATA_PROCESSED')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+```
+```{r}
+
+
+# Filter data for Jan, Feb, Mar 2020
+jan_feb_mar_2020_real_prices <- percentage_change_CPI_real_df %>%
+  filter(year == 2020, month %in% c(1, 2, 3))
+
+# Get missing real prices
+missing_real_prices <- percentage_change_CPI_real_df %>%
+  filter(!(year == 2020 & month %in% c(1, 2, 3)))
+
+missing_real_prices_2020_after <- missing_real_prices %>%
+  filter(year >= 2020)
+
+# Sort and get earliest values for each series
+earliest_real_values <- missing_real_prices_2020_after %>%
+  arrange(admin1, admin2, market, commodity) %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  slice(1) %>%
+  ungroup() %>%
+  rename(real_price_reference = real_price)
+
+# Insert earliest_real_values into database
+tryCatch({
+  insert_dataframe_to_db(con, earliest_real_values, 'WFP_PRICE_DATA_PROCESSED_MISSING REAL_REFERENCE')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_MISSING REAL_REFERENCE table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+# Calculate average real prices for Jan, Feb, Mar 2020
+avg_real_prices_grouped <- jan_feb_mar_2020_real_prices %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  summarise(real_price_reference = mean(real_price, na.rm = TRUE)) %>%
+  ungroup()
+
+# Merge average real prices back into main dataframe
+percentage_change_CPI_real_index_df <- percentage_change_CPI_real_df %>%
+  left_join(avg_real_prices_grouped, by = c("admin1", "admin2", "commodity", "market"))
+
+# Insert into database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_real_index_df, 'WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE1')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE1 table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+# Merge earliest real values
+percentage_change_CPI_real_index_early_df <- percentage_change_CPI_real_index_df %>%
+  left_join(earliest_real_values %>% select(admin1, admin2, commodity, market, real_price_reference),
+            by = c("admin1", "admin2", "commodity", "market"),
+            suffix = c("", "_earliest"))
+
+# Fill missing values
+percentage_change_CPI_real_index_early_df <- percentage_change_CPI_real_index_early_df %>%
+  mutate(real_price_reference = coalesce(real_price_reference, real_price_reference_earliest)) %>%
+  select(-real_price_reference_earliest)
+
+# Insert into database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_real_index_early_df, 'WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE2')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_REAL_REFERENCE2 table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+```
+
+Nominal index
+
+```{r}
+
+# Initialize dataframes
+percentage_change_CPI_real_nominal_df <- percentage_change_CPI_real_index_early_df
+
+# Filter data for Jan, Feb, Mar 2020
+jan_feb_mar_2020_nominal_prices <- percentage_change_CPI_real_nominal_df %>%
+  filter(year == 2020, month %in% c(1, 2, 3))
+
+# Get missing nominal prices
+missing_nominal_prices <- percentage_change_CPI_real_nominal_df %>%
+  filter(!(year == 2020 & month %in% c(1, 2, 3)))
+
+missing_nominal_prices_2020_after <- missing_real_prices %>%
+  filter(year >= 2020)
+
+# Sort and get earliest values for each series
+earliest_nominal_values <- missing_nominal_prices_2020_after %>%
+  arrange(admin1, admin2, market, commodity) %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  slice(1) %>%
+  ungroup() %>%
+  rename(nominal_price_reference = price)
+
+# Insert earliest_nominal_values into database
+tryCatch({
+  insert_dataframe_to_db(con, earliest_nominal_values, 'WFP_PRICE_DATA_PROCESSED_MISSING_NOMINAL_REFERENCE')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_MISSING_NOMINAL_REFERENCE table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+# Calculate average nominal prices for Jan, Feb, Mar 2020
+avg_nominal_prices_grouped <- jan_feb_mar_2020_nominal_prices %>%
+  group_by(admin1, admin2, market, commodity) %>%
+  summarise(nominal_price_reference = mean(price, na.rm = TRUE)) %>%
+  ungroup()
+
+# Merge average nominal prices back into main dataframe
+percentage_change_CPI_real_nominal_index_df <- percentage_change_CPI_real_nominal_df %>%
+  left_join(avg_nominal_prices_grouped, by = c("admin1", "admin2", "commodity", "market"))
+
+# Insert into database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_real_nominal_index_df, 'WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE1')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE1 table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+# Merge earliest nominal values
+percentage_change_CPI_nominal_index_early_df <- percentage_change_CPI_real_nominal_index_df %>%
+  left_join(earliest_nominal_values %>% select(admin1, admin2, commodity, market, nominal_price_reference),
+            by = c("admin1", "admin2", "commodity", "market"),
+            suffix = c("", "_earliest"))
+
+# Fill missing values
+percentage_change_CPI_nominal_index_early_df <- percentage_change_CPI_nominal_index_early_df %>%
+  mutate(nominal_price_reference = coalesce(nominal_price_reference, nominal_price_reference_earliest)) %>%
+  select(-ends_with("_earliest"))
+
+# Insert into database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_nominal_index_early_df, 'WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE2')
+  print("Data successfully inserted into WFP_PRICE_DATA_PROCESSED_NOMINAL_REFERENCE2 table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+
+percentage_change_CPI_nominal_index_early_df <- percentage_change_CPI_nominal_index_early_df %>%
+  # First, ensure the date column is in Date format
+  mutate(date = as.Date(date)) %>%
+  # Then filter for dates from 2020-01-01 onwards
+  filter(date >= as.Date("2020-01-01")) %>%
+  # Now perform the other calculations
+  mutate(
+    nominal_price_index = ifelse(!is.na(nominal_price_reference),
+                                 (price / nominal_price_reference) * 100,
+                                 NA),
+    real_price_index = ifelse(!is.na(real_price_reference),
+                              (real_price / real_price_reference) * 100,
+                              NA),
+    # Add CPI_year_x and CPI_month_x columns
+    CPI_year_x = year,
+    CPI_month_x = month
+  )
+
+# Insert final results into database
+tryCatch({
+  insert_dataframe_to_db(con, percentage_change_CPI_nominal_index_early_df, 'WFP_PRICE_DATA_NEPAL_PROCESSED')
+  print("Data successfully inserted into WFP_PRICE_DATA_NEPAL_PROCESSED table.")
+}, error = function(e) {
+  message("Error occurred while inserting data into the database: ", e$message)
+})
+
+# Close the database connection
+#dbDisconnect(con)
+```
+

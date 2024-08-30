@@ -1,0 +1,598 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20233.23.1017.0948                               -->
+<workbook original-version='18.1' source-build='2023.3.0 (20233.23.1017.0948)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='NEPAL_PRICE_DATA_2023_08_24' inline='true' name='federated.1afvj6s1gg2po8194tsxv0avcn0h' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='NEPAL_PRICE_DATA_2023_08_24' name='textscan.1sugml30ni1r1w1g1ppej1yt657f'>
+            <connection class='textscan' directory='C:/Users/SOONHOKIM/CGIAR/IFPRI-MTID-FSP - 2.0 Price Monitoring Tool/NEPAL USAID/underlying data' filename='NEPAL_PRICE_DATA_2023_08_24.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.1sugml30ni1r1w1g1ppej1yt657f' name='NEPAL_PRICE_DATA_2023_08_24.csv' table='[NEPAL_PRICE_DATA_2023_08_24#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='date' name='date' ordinal='1' />
+            <column datatype='string' name='admin1' ordinal='2' />
+            <column datatype='string' name='admin2' ordinal='3' />
+            <column datatype='string' name='market' ordinal='4' />
+            <column datatype='real' name='latitude' ordinal='5' />
+            <column datatype='real' name='longitude' ordinal='6' />
+            <column datatype='string' name='category' ordinal='7' />
+            <column datatype='string' name='commodity' ordinal='8' />
+            <column datatype='string' name='unit' ordinal='9' />
+            <column datatype='string' name='priceflag' ordinal='10' />
+            <column datatype='string' name='pricetype' ordinal='11' />
+            <column datatype='string' name='currency' ordinal='12' />
+            <column datatype='integer' name='price' ordinal='13' />
+            <column datatype='real' name='usdprice' ordinal='14' />
+            <column datatype='integer' name='year' ordinal='15' />
+            <column datatype='integer' name='month' ordinal='16' />
+            <column datatype='real' name='annual_avg_price' ordinal='17' />
+            <column datatype='real' name='percentage_change' ordinal='18' />
+            <column datatype='real' name='CPI' ordinal='19' />
+            <column datatype='integer' name='CPI_year_x' ordinal='20' />
+            <column datatype='integer' name='CPI_month_x' ordinal='21' />
+            <column datatype='real' name='real_price' ordinal='22' />
+            <column datatype='real' name='nominal_price_reference' ordinal='23' />
+            <column datatype='real' name='nominal_price_index' ordinal='24' />
+            <column datatype='real' name='real_price_reference' ordinal='25' />
+            <column datatype='real' name='real_price_index' ordinal='26' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.1sugml30ni1r1w1g1ppej1yt657f' name='NEPAL_PRICE_DATA_2023_08_24.csv' table='[NEPAL_PRICE_DATA_2023_08_24#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='date' name='date' ordinal='1' />
+            <column datatype='string' name='admin1' ordinal='2' />
+            <column datatype='string' name='admin2' ordinal='3' />
+            <column datatype='string' name='market' ordinal='4' />
+            <column datatype='real' name='latitude' ordinal='5' />
+            <column datatype='real' name='longitude' ordinal='6' />
+            <column datatype='string' name='category' ordinal='7' />
+            <column datatype='string' name='commodity' ordinal='8' />
+            <column datatype='string' name='unit' ordinal='9' />
+            <column datatype='string' name='priceflag' ordinal='10' />
+            <column datatype='string' name='pricetype' ordinal='11' />
+            <column datatype='string' name='currency' ordinal='12' />
+            <column datatype='integer' name='price' ordinal='13' />
+            <column datatype='real' name='usdprice' ordinal='14' />
+            <column datatype='integer' name='year' ordinal='15' />
+            <column datatype='integer' name='month' ordinal='16' />
+            <column datatype='real' name='annual_avg_price' ordinal='17' />
+            <column datatype='real' name='percentage_change' ordinal='18' />
+            <column datatype='real' name='CPI' ordinal='19' />
+            <column datatype='integer' name='CPI_year_x' ordinal='20' />
+            <column datatype='integer' name='CPI_month_x' ordinal='21' />
+            <column datatype='real' name='real_price' ordinal='22' />
+            <column datatype='real' name='nominal_price_reference' ordinal='23' />
+            <column datatype='real' name='nominal_price_index' ordinal='24' />
+            <column datatype='real' name='real_price_reference' ordinal='25' />
+            <column datatype='real' name='real_price_index' ordinal='26' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>admin1</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[admin1]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>admin1</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>admin2</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[admin2]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>admin2</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>market</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[market]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>market</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>latitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[latitude]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>latitude</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>longitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[longitude]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>longitude</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>commodity</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[commodity]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>commodity</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>unit</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[unit]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>unit</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>priceflag</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[priceflag]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>priceflag</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>pricetype</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[pricetype]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>pricetype</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>currency</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[currency]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>currency</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>price</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[price]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>price</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>usdprice</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[usdprice]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>usdprice</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[year]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>year</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>month</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[month]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>month</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>annual_avg_price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[annual_avg_price]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>annual_avg_price</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>percentage_change</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[percentage_change]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>percentage_change</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CPI</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CPI]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>CPI</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CPI_year_x</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CPI_year_x]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>CPI_year_x</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CPI_month_x</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[CPI_month_x]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>CPI_month_x</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>real_price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[real_price]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>real_price</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>nominal_price_reference</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[nominal_price_reference]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>nominal_price_reference</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>nominal_price_index</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[nominal_price_index]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>nominal_price_index</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>real_price_reference</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[real_price_reference]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>real_price_reference</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>real_price_index</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[real_price_index]</local-name>
+            <parent-name>[NEPAL_PRICE_DATA_2023_08_24.csv]</parent-name>
+            <remote-alias>real_price_index</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='CPI month x' datatype='integer' name='[CPI_month_x]' role='measure' type='quantitative' />
+      <column caption='CPI year x' datatype='integer' name='[CPI_year_x]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='NEPAL_PRICE_DATA_2023_08_24.csv' datatype='table' name='[__tableau_internal_object_id__].[NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98]' role='measure' type='quantitative' />
+      <column caption='Admin1' datatype='string' name='[admin1]' role='dimension' type='nominal' />
+      <column caption='Admin2' datatype='string' name='[admin2]' role='dimension' type='nominal' />
+      <column caption='Annual Avg Price' datatype='real' name='[annual_avg_price]' role='measure' type='quantitative' />
+      <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+      <column caption='Commodity' datatype='string' name='[commodity]' role='dimension' type='nominal' />
+      <column caption='Currency' datatype='string' name='[currency]' role='dimension' type='nominal' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column aggregation='Avg' caption='Latitude' datatype='real' name='[latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column aggregation='Avg' caption='Longitude' datatype='real' name='[longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Market' datatype='string' name='[market]' role='dimension' type='nominal' />
+      <column caption='Month' datatype='integer' name='[month]' role='dimension' type='quantitative' />
+      <column caption='Nominal Price Index' datatype='real' name='[nominal_price_index]' role='measure' type='quantitative' />
+      <column caption='Nominal Price Reference' datatype='real' name='[nominal_price_reference]' role='measure' type='quantitative' />
+      <column caption='Percentage Change' datatype='real' name='[percentage_change]' role='measure' type='quantitative' />
+      <column caption='Price' datatype='integer' name='[price]' role='measure' type='quantitative' />
+      <column caption='Priceflag' datatype='string' name='[priceflag]' role='dimension' type='nominal' />
+      <column caption='Pricetype' datatype='string' name='[pricetype]' role='dimension' type='nominal' />
+      <column caption='Real Price' datatype='real' name='[real_price]' role='measure' type='quantitative' />
+      <column caption='Real Price Index' datatype='real' name='[real_price_index]' role='measure' type='quantitative' />
+      <column caption='Real Price Reference' datatype='real' name='[real_price_reference]' role='measure' type='quantitative' />
+      <column caption='Unit' datatype='string' name='[unit]' role='dimension' type='nominal' />
+      <column caption='Usdprice' datatype='real' name='[usdprice]' role='measure' type='quantitative' />
+      <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='NEPAL_PRICE_DATA_2023_08_24.csv' id='NEPAL_PRICE_DATA_2023_08_24.csv_CDAA9E8BD79141E0BB82D1A96D1C2B98'>
+            <properties context=''>
+              <relation connection='textscan.1sugml30ni1r1w1g1ppej1yt657f' name='NEPAL_PRICE_DATA_2023_08_24.csv' table='[NEPAL_PRICE_DATA_2023_08_24#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='F1' ordinal='0' />
+                  <column datatype='date' name='date' ordinal='1' />
+                  <column datatype='string' name='admin1' ordinal='2' />
+                  <column datatype='string' name='admin2' ordinal='3' />
+                  <column datatype='string' name='market' ordinal='4' />
+                  <column datatype='real' name='latitude' ordinal='5' />
+                  <column datatype='real' name='longitude' ordinal='6' />
+                  <column datatype='string' name='category' ordinal='7' />
+                  <column datatype='string' name='commodity' ordinal='8' />
+                  <column datatype='string' name='unit' ordinal='9' />
+                  <column datatype='string' name='priceflag' ordinal='10' />
+                  <column datatype='string' name='pricetype' ordinal='11' />
+                  <column datatype='string' name='currency' ordinal='12' />
+                  <column datatype='integer' name='price' ordinal='13' />
+                  <column datatype='real' name='usdprice' ordinal='14' />
+                  <column datatype='integer' name='year' ordinal='15' />
+                  <column datatype='integer' name='month' ordinal='16' />
+                  <column datatype='real' name='annual_avg_price' ordinal='17' />
+                  <column datatype='real' name='percentage_change' ordinal='18' />
+                  <column datatype='real' name='CPI' ordinal='19' />
+                  <column datatype='integer' name='CPI_year_x' ordinal='20' />
+                  <column datatype='integer' name='CPI_month_x' ordinal='21' />
+                  <column datatype='real' name='real_price' ordinal='22' />
+                  <column datatype='real' name='nominal_price_reference' ordinal='23' />
+                  <column datatype='real' name='nominal_price_index' ordinal='24' />
+                  <column datatype='real' name='real_price_reference' ordinal='25' />
+                  <column datatype='real' name='real_price_index' ordinal='26' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{C3AF4CCB-BDD0-46E7-9F91-8B1E12E7B4EE}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{08998952-52B7-4FA8-B33D-5B359BDA4E30}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
+      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
+      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
+      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
+      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
+      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
+      fBUOM1sAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

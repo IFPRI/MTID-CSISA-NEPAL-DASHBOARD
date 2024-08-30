@@ -1,0 +1,4 @@
+Sys.setenv(DB_SERVER = nepal-dashboard-db.c5nzpjrxfrcj.us-east-1.rds.amazonaws.com)
+Sys.setenv(DB_DATABASE = fsp_data)
+Sys.setenv(DB_UID= admin)
+Sys.setenv(DB_PASSWORD = Q3aikjweEVYoox6yyZhi)
